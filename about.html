@@ -93,7 +93,7 @@ var less = { env: "development" };
               </nav>
             </div>
 
-          <div class="span6">
+          <div class="span5 offset1">
             <!--start menu-->
                                               <nav class=main_nav>
     <ul>
@@ -111,7 +111,7 @@ var less = { env: "development" };
             </a>
         </li>        <li>
             <a title="About"
-                class="nav about"
+                class="nav active about"
                 href="/about.html">
                 About
             </a>
@@ -126,16 +126,16 @@ var less = { env: "development" };
       <!--end container-->
   </header>
   <!--end header-->
-    <div class="container">
+    <div class="container" id="main">
       <!--start container-->
 
 
-    <section class="content row">
+    <section class="row" id="content">
       <!--start content-->
-      <div class"container" id="about">
-    <div class="row">
-        <div class="span12 offset2">
-            <p><img id="me" src="/media/images/me.jpg" width="200" /> I'm a Full Stack Web Developer trying to put my skills and knowledge to good use and make a difference in this crazy world.  Currently employed full-time with <a href="http://nationalpriorities.org/" title="National Priorities Project">National Priorities Project</a> but on the search for a new challenge.  If you have a job available with a technically and socially innovative company, please check out my <a href="/resume.html" title="Resume">resume</a> and feel free to get in touch.</p>
+      <div class="span12 offset2" id="about-me">
+            <p><img id="me" src="/media/images/me.jpg" width="200" /> I'm a Full Stack Web Developer trying to put my skills and knowledge to good use.  I call myself a Full Stack Web Developer because I can handle the entire stack - from the back-end to front-end to deployment.  I love Python/Django and I've spent many years using PHP.   Recently heavy into Javascript (who isn't?) and loving it.</p>
+
+            <p>Currently employed full-time with <a href="http://nationalpriorities.org/" title="National Priorities Project">National Priorities Project</a> but on the search for a new challenge.  If you have a job available with a technically and socially innovative company, please check out my <a href="/resume.html" title="Resume">resume</a> and feel free to get in touch.</p>
 
             <p>I currently reside in <a href="http://www.northamptonma.gov/" title="Northampton, MA">Northampton, MA</a> where I own a small home with my beautiful <a href="http://harvestmoonblog.tumblr.com/" title="Harvest Moon Blog">wife</a>, our wonderful 11 month old baby boy <a href="http://24.media.tumblr.com/tumblr_m4ufu4OBc01rrngsjo1_500.jpg">Lucas</a>, and our 3 year old <a href="/media/images/omar.jpg" title="Black Lab">Black Lab</a>.</p>
 
@@ -143,8 +143,7 @@ var less = { env: "development" };
 
             <p>And since it seems you can't leave it out these days - my beer of choice is anything from <a href="http://victorybeer.com/" title="Victory Brewing">Victory Brewing</a>, especially <a href="http://victorybeer.com/beers/hopdevil/" title="Hop Devil">Hop Devil</a>.</p>
         </div>
-    </div>
-</div>
+
 
 
     </section>
@@ -157,10 +156,8 @@ var less = { env: "development" };
    <footer>
       <div class="container">
         <div class="row">
-        </div>
-        <div class="row">
            <div class="span16" id="powered-by">
-              Powered by <a href="http://ringce.com/hyde">hyde</a>. Styled with <a href="http://lesscss.org/" title="LESS">LESS</a>. Hosted on <a href="http://github.com/" title="Github.com">Github.com</a>.
+              Powered by <a href="http://hyde.github.com">hyde</a>. Styled with <a href="http://lesscss.org/" title="LESS">LESS</a>. Hosted on <a href="http://github.com/" title="Github.com">Github.com</a>.
             </div>
         </div>
       </div>

@@ -101,7 +101,7 @@ var less = { env: "development" };
               </nav>
             </div>
 
-          <div class="span6">
+          <div class="span5 offset1">
             <!--start menu-->
               {% block nav %}
                 {% from "macros.j2" import render_nav with context %}
@@ -116,11 +116,11 @@ var less = { env: "development" };
       <!--end container-->
   </header>
   <!--end header-->
-    <div class="container">
+    <div class="container" id="main">
       <!--start container-->
 
 
-    <section class="content row">
+    <section class="row" id="content">
       <!--start content-->
       {% block main %}
 
@@ -144,10 +144,8 @@ var less = { env: "development" };
    <footer>
       <div class="container">
         <div class="row">
-        </div>
-        <div class="row">
            <div class="span16" id="powered-by">
-              Powered by <a href="http://ringce.com/hyde">hyde</a>. Styled with <a href="http://lesscss.org/" title="LESS">LESS</a>. Hosted on <a href="http://github.com/" title="Github.com">Github.com</a>.
+              Powered by <a href="http://hyde.github.com">hyde</a>. Styled with <a href="http://lesscss.org/" title="LESS">LESS</a>. Hosted on <a href="http://github.com/" title="Github.com">Github.com</a>.
             </div>
         </div>
       </div>
