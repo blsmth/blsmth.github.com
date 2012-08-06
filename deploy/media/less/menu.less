@@ -1,0 +1,241 @@
+/******************************************************************
+		PRIMARY MENU
+*******************************************************************/
+
+
+#primary-menu-wrapper {
+	position: relative;
+	z-index: 10;
+	img {
+		margin-top: -1px;
+	}
+	#primary-menu-inner {
+		width: 940px !important;
+		margin-left: 0px;
+		&.floater {
+			position:fixed;
+			top:0px;
+			z-index:999;
+			height:42px;
+			width:960px;
+			border-top:none;
+			background-color: @white;
+			border:1px solid @blue;
+			color:#ccc;
+			display:block;
+			clear:both;
+			margin-left:auto;
+			margin-right:auto;
+			float:left;
+
+			box-shadow: 0 0 7px rgba(0,0,0,0.4);
+				-webkit-box-shadow: 0 0 7px rgba(0,0,0,0.4);
+				-moz-box-shadow: 0 0 7px rgba(0,0,0,0.4);
+				border-radius: .214em;
+				-webkit-border-radius: .214em;
+				-moz-border-radius: .214em;
+		}
+	}
+}
+/*** ESSENTIAL STYLES ***/
+.sf-menu, .sf-menu * {
+	margin:			0;
+	padding:		0;
+	list-style:		none;
+}
+.sf-menu {
+	line-height:	1.0;
+	ul {
+		position:		absolute;
+		top:			-999em;
+		width:			20em; /* left offset of submenus need to match (see below) */
+		li {
+			width:			100%;
+		}
+
+	}
+	li {
+		float:			left;
+		position:		relative;
+		&:hover {
+			visibility:		inherit; /* fixes IE7 'sticky bug' */
+		}
+		&:hover ul,
+		&.sfHover ul {
+			left:			0;
+			top:			40px; /* match top ul list item height */
+			z-index:		99;
+		}
+	}
+ 	a {
+		display:		block;
+		position:		relative;
+	}
+}
+
+ul.sf-menu li:hover li ul,
+ul.sf-menu li.sfHover li ul {
+	top:			-999em;
+}
+ul.sf-menu li li:hover ul,
+ul.sf-menu li li.sfHover ul {
+	left:			20em; /* match ul width */
+	top:			0;
+}
+ul.sf-menu li li:hover li ul,
+ul.sf-menu li li.sfHover li ul {
+	top:			-999em;
+}
+ul.sf-menu li li li:hover ul,
+ul.sf-menu li li li.sfHover ul {
+	left:			20em; /* match ul width */
+	top:			0;
+}
+
+
+ul.sf-menu > li.current.first { 
+	background-color: @white !important;
+	a { color: @black; }
+}
+
+/*** DEMO SKIN ***/
+.sf-menu {
+	float:			left;
+	margin-bottom:	0;
+	width: 100%;
+	
+	a {
+		//border-left:	1px solid #fff;
+		//border-top:		1px solid #CFDEFF;
+		padding: 		.75em 1em;
+		text-decoration:none;
+		font-weight: 500;
+		text-transform: uppercase;
+		font-size: 14px;
+	
+	}
+	a, a:visited  { /* visited pseudo selector so IE6 applies text colour*/
+		color:			@grayDark;
+	}
+	li {
+		background:		@white;
+		&.current {
+			background: @blue;
+			a { color: @white; }
+			li { 
+				a { 
+					color: @grayDark;
+				&:hover { color: @white; }
+				}
+			&:hover {
+				a { color: @white; }
+				}
+			}
+			li.current { 
+				a { color: @white; } 
+				li a { color: @grayDark;}
+			}
+		}
+	
+		li {
+			background:	@white;
+			color: @grayDark;
+			border: 1px solid @grayLight;
+			li {
+				background:	@white;
+				color: @grayDark;
+			}
+		
+			&.current {
+				background: @blue;
+				a { color: @white; }
+				li a { color: @grayDark; }
+			}
+		}
+		&.donate { 
+			color: @white;
+    		.gradientBar(@orange, @orangeDark);	
+    		width: 162px;
+    		text-align: center;
+    		float: right;    		
+    		a {
+    			color: @white;
+    		}	
+		}
+	}
+
+	li:hover, li.sfHover, a:focus, a:hover, a:active {
+		color: @white;
+		background:		@gray;
+		outline:		0;
+	}
+}
+
+
+/******************************************************************
+		/PRIMARY MENU
+*******************************************************************/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/******************************************************************
+	 SIDEBAR MENU
+*******************************************************************/
+
+.sidebar-menu {
+	margin-top: 40px;
+	h1.sidebar-title { 
+		display: none;
+	}
+	ul {
+		width: 210px;
+		li {
+			font-size: 16px;
+			font-weight: 200;
+			margin-bottom: 1px !important;
+			a {
+				display: block;
+				padding: 5px 0px 5px 10px;
+				width: 100%;
+				background: @blue;
+				color: @white;
+				&:hover {
+					text-decoration: none;
+					
+				}
+
+			}
+
+		&.current {
+					a {	text-decoration: underline; }
+				}
+		}
+	}
+}
+
+
+
+
+
+/******************************************************************
+	 /SIDEBAR MENU
+*******************************************************************/
+
+
+
+
+
+

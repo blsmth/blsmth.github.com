@@ -1,0 +1,25 @@
+---
+extends: base.j2
+default_block: main
+title: About - Brendan Smith - Full Stack Web Developer
+description: About Brendan
+---
+
+
+
+
+
+
+<div class"container" id="about">
+    <div class="row">
+        <div class="span12 offset2">
+            <p><img id="me" src="/media/images/me.jpg" width="200" /> I'm a Full Stack Web Developer trying to put my skills and knowledge to good use and make a difference in this crazy world.  Currently employed full-time with <a href="http://nationalpriorities.org/" title="National Priorities Project">National Priorities Project</a> but on the search for a new challenge.  If you have a job available with a technically and socially innovative company, please check out my <a href="/resume.html" title="Resume">resume</a> and feel free to get in touch.</p>
+
+            <p>I currently reside in <a href="http://www.northamptonma.gov/" title="Northampton, MA">Northampton, MA</a> where I own a small home with my beautiful <a href="http://harvestmoonblog.tumblr.com/" title="Harvest Moon Blog">wife</a>, our wonderful 11 month old baby boy <a href="http://24.media.tumblr.com/tumblr_m4ufu4OBc01rrngsjo1_500.jpg">Lucas</a>, and our 3 year old <a href="/media/images/omar.jpg" title="Black Lab">Black Lab</a>.</p>
+
+            <p>My limited free time these days tends to include but is in no way limited to: DIY home improvement and car repairs, motorcyles, gardening, hiking, photography and music.</p>
+
+            <p>And since it seems you can't leave it out these days - my beer of choice is anything from <a href="http://victorybeer.com/" title="Victory Brewing">Victory Brewing</a>, especially <a href="http://victorybeer.com/beers/hopdevil/" title="Hop Devil">Hop Devil</a>.</p>
+        </div>
+    </div>
+</div>
