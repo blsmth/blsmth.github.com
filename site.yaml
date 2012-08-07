@@ -10,6 +10,7 @@ plugins:
     - hyde.ext.plugins.tagger.TaggerPlugin
     - hyde.ext.plugins.syntext.SyntextPlugin
     - hyde.ext.plugins.textlinks.TextlinksPlugin
+
 context:
     data:
         tweet_via: blsmth
