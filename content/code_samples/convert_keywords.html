@@ -1,0 +1,125 @@
+---
+extends: base.j2
+default_block: main
+title: Code Samples - covert_keywords_to_popovers
+description:
+---
+
+
+<h1>FB101 Keywords to Popovers</h1>
+<h2>Description</h2>
+<p>This piece of code is a small snippet of code in place behind the scenes on NPP's <a href="http://nationalpriorities.org/en/budget-basics/federal-budget-101/" target="_blank">Federal Budget 101</a> section of the site.</p>
+<p>I used <a href="https://www.django-cms.org/">Django-CMS</a> to hold certain pieces of NPP's site together because it has some really powerful features, including a very nice menu system, and text plugins on pages.  This code shows one function that ties into Django-CMS' text-plugin system.</p>
+<p>The FB101 section of the site consists of two parts: the text itself (linked above), and the Keyword Glossary, which is a glossary of Federal Budget related terms.  If you look at any of the pages contained in the FB101 section (for example: <a href="http://nationalpriorities.org/en/budget-basics/federal-budget-101/federal-budget-process/" target="_blank">Federal Budget Process</a>) you'll notice certain words are in bold and have popovers that trigger on mouseover. Those are the words in the Keyword Glossary, and the code following is how they get highlighted.</p>
+<p>The straightforward text-plugin system allows NPP's staff to easily edit the FB101 section of the site without even having to think about what words are in the Keyword Glossary or how to get them to display.</p>
+
+<h2>Convert Function</h2>
+<p>This function gets called as part of Django-CMS' text-rendering process. The process goes something like this:
+<ul>
+    <li>Query the database for a Queryset of Keywords.</li>
+    <li>Loop through each keyword and do the following:
+        <ul>
+            <li>create a compiled RegEx for this word</li>
+            <li>loop through each occurence of this word using the re module's finditer() function which returns an iterable of MatchObject instances.</li>
+            <li>if the occurence is the first or whatever we've passed as the variable <strong>occurence</strong>:<ul><li> we replace the text with an anchor tag with class 'fb101keyword' and attributes <strong>data-title</strong> and <strong>data-load</strong> which are Twitter Bootstrap specific attributes for Popovers. The <strong>data-load</strong> attribute is a url to an API that returns the keywords definition formatted as html (mostly to avoid too much html formatting in this python module) the first time the user scrolls over the keyword.</li><li> We then join the string to our output using re's MatchObject .start() and .end() functions.</li></ul>
+            <li>if it's not, we simply join the string to our output, again using MatchObject's .start() and .end() functions.</li>
+            <li>return the output</li>
+        </ul></li>
+</ul>
+</p>
+
+{% syntax 'python','fb101text/utils.py' %}
+def convert_keywords_to_popovers(text,occurence=4):
+    """
+    Convert FB101 Keywords to html elements that will be replaced by popovers
+    on the front end.
+    """
+
+    word_counts = {}      # word count so we can change every (n)th occurence
+    output = text
+    for word in Keyword.objects.all():
+        # creat compiled regex for each word in Queryset
+        word_re = re.compile(r'\b%s\b' % word.word, re.IGNORECASE)
+        word_counts[word.word]= 0
+
+        i = 0;
+        this_output = ""
+        for m in word_re.finditer(output):
+            # iterate over each found word
+            word_counts[word.word] += 1
+            # here we replace every 1st and [occurence] occurence of the word
+            if word_counts[word.word] % occurence == 0 or word_counts[word.word] == 1:
+                # wrap word in appropriate html
+                this_output += "".join([output[i:m.start()],
+                       "<a href=\"%s#%s\" data-title=\"Federal Budget Glossary\" data-load=\"%s\" rel=\"popover\" \
+                       class=\"fb101keyword\">"  %
+                       (urlresolvers.reverse('keyword-list'),
+                        word.slug,
+                        urlresolvers.reverse('keyword-html', args=[word.slug])),
+
+                       output[m.start():m.end()],
+                       "</a>"])
+            else:
+                # word was not replaced but we still need to add this chunk of text
+                # to the output
+                this_output += "".join([output[i:m.end()]])
+
+            # set our pointer to the end of this word instance
+            i = m.end()
+
+        # if we replaced anything at all, we need to include the rest of the text
+        if this_output != '':
+            this_output += output[m.end():]
+            output = this_output
+
+        # cleanup
+        del word_re
+    return output
+{% endsyntax %}
+
+<p>&nbsp;</p>
+<h2>Django Template</h2>
+<p>This snippet is the Django Template that renders the text once it's done being processed. <strong>body</strong> is the variable eventually returned by the text processing functions.</p>
+<p>The important part here is the jQuery code at the bottom that handles each keywords hover state.  The first time a keyword is hovered, it makes an AJAX call to the API and populates the <strong>data-content</strong> attribute of the anchor tag and then turns it into a Twitter Bootstrap Popover.  If it's already been hovered over once, it simply shows the popover</p>
+{% syntax 'django','' %}
+{% raw %}
+{% load sekizai_tags %}
+
+
+
+{{ body|safe }}
+
+
+{% addtoblock 'js' %}
+<script src="/static/bootstrap/js/bootstrap-tooltip.js"></script>
+<script src="/static/bootstrap/js/bootstrap-popover.js"></script>
+{% endaddtoblock %}
+
+
+{% addtoblock 'document_ready' %}
+$('.fb101keyword').bind('hover',function(){
+        var el=$(this);
+
+
+        if (el.attr('data-load') != '') {
+            $.get(el.attr('data-load'),function(d) {
+            el.attr('data-content', d);
+            el.attr('data-load', '');
+            el.popover('show');
+
+            });
+        }
+        else {
+            el.popover('toggle');
+        }
+  });
+{% endaddtoblock %}
+{% endraw %}
+{% endsyntax %}
+<p>&nbsp;</p>
+<h2>Conclusion</h2>
+<p>On some pages with lots of text, lots of keywords or both, this code can get (very) slightly expensive, but I think I did a good job of keeping memory and cpu usage down through the use of the re module instead of string finding and replacing.  It also ends up getting cached entirely in memcached so it's only expensive the first time it's viewed.</p>
+<p>While this code may not seem like much, it has made it beyond simple for even the most non-tech-savvy users at NPP to be able to edit the FB101 section and not have to worry about keywords.  It has also proved to be a very nice feature for our constituents who have praised the ability to lookup a keyword without having to lose where they are in the FB101 section.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
