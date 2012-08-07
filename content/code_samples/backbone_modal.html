@@ -108,6 +108,7 @@ window.ModalConfirm = ModalView.extend({
 
     cancel: function() {
       this.hideModal();
+
       if (_.isDefined(this.no)) {
         this.no();
       }
