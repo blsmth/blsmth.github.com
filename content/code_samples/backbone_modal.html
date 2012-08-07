@@ -91,17 +91,26 @@ window.ModalConfirm = ModalView.extend({
     initialize: function() {
       // define what we do on 'yes'
       this.yes = this.options.yes;
+
+      // and what we do on 'no'
+      this.no = this.options.no;
+
       // backbone's version of super()
       this.constructor.__super__.initialize.apply(this, [this.options])
     },
 
     confirm: function() {
       this.hideModal();
-      this.yes();
+      if (_.isDefined(this.yes) {
+        this.yes();
+      }
     },
 
     cancel: function() {
       this.hideModal();
+      if (_.isDefined(this.no)) {
+        this.no();
+      }
     }
 
 });
