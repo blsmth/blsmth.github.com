@@ -24,7 +24,8 @@ window.ModalView = Backbone.View.extend({
   },
 
   initialize : function(){
-    _.bindAll(this,"render")
+    // bind all functions so we have a sane 'this'
+    _.bindAll(this);
 
     // set title and content
     this.title = this.options.title;
