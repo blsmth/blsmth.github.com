@@ -41,7 +41,9 @@
 
 
 {% block less %}
-<link rel="stylesheet/less" media="screen" href="{{ media_url('less/site.less') }}"/>
+<link rel="stylesheet/less" media="all" href="{{ media_url('less/site.less') }}"/>
+<link rel="stylesheet/less" media="print" href="{{ media_url('less/print.less') }}"/>
+
 
 <script type="text/javascript">
 var less = { env: "development" };
