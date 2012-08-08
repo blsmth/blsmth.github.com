@@ -139,18 +139,22 @@ var less = { env: "development" };
 
     <section class="row" id="content">
       <!--start content-->
-      <div id="gallery"></div>
+      <div id="gallery">
 
-<script type="text/template" id="gallery-template">
+    <div class="span6">
+<div id="info"></div>
+        <ul id="thumbs"></ul>
+
+
+    </div>
+    <div class="span" id="fullsize"></div>
+<div class="span16" id="gallery-credits">Gallery powered by <a href="https://github.com/blsmth/backbone-gallery.js">backbone-gallery.js</a></div>
+
+</div>
+
+<script type="text/template" id="gallery-info-template">
       <h1 id="title"><%= title %></h1>
       <p id="description"><%= description %></p>
-      <div class="span6">
-        <ul id="thumbs"></ul>
-      </div>
-      <div class="span" id="fullsize">
-
-      </div>
-
 </script>
 
 <script type="text/template" id="fullsize-template">
@@ -185,7 +189,7 @@ var less = { env: "development" };
   
   <script src="/media/js/libs/underscore-min.js"></script>
 <script src="/media/js/libs/backbone-min.js"></script>
-<script src="/media/js/libs/backbone-photo.js"></script>
+<script src="/media/js/libs/backbone-gallery.js"></script>
 
 
 
