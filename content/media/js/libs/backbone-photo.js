@@ -42,7 +42,7 @@ if (_.isUndefined(window.dispatcher)) {
 
 
         var FullView = Backbone.View.extend({
-          template: _.template('<img src="<%= full_path %>" />'),
+          template: _.template($('#fullsize-template').html()),
 
           initialize: function(){
             _.bindAll(this);
@@ -142,11 +142,11 @@ gallery = {
     Once it's finished I'll release the code on my github.com account.",
     directory: '/media/photos/lucas/',
       photos: [
-          { filename: 'IMG_4423.jpg' },
-          { filename: 'IMG_4433.jpg' },
-          { filename: 'IMG_4505.jpg' },
-          { filename: 'IMG_4369.jpg' },
-          { filename: 'IMG_4333.jpg' }
+          { filename: 'IMG_4423.jpg', title: 'Oh hai!' },
+          { filename: 'IMG_4433.jpg', title: 'Friends' },
+          { filename: 'IMG_4505.jpg', title: 'Sleeping with Sock Monkey' },
+          { filename: 'IMG_4369.jpg', title: 'Weeeeee' },
+          { filename: 'IMG_4333.jpg', title: 'First burrito' }
           ]
   };
 

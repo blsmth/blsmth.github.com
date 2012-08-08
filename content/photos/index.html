@@ -16,11 +16,21 @@ description: Brendan's Photos
       <div class="span6">
         <ul id="thumbs"></ul>
       </div>
-      <div class="span" id="fullsize"></div>
+      <div class="span" id="fullsize">
+
+      </div>
 
 </script>
 
+<script type="text/template" id="fullsize-template">
+<p id="image-title"><%= title %></p>
+<img src="<%= full_path %>" alt="<%= title %>"/>
+</script>
+
 {% endblock %}
+
+
+
 
 {% block scripts %}
 <script src="{{ media_url('js/libs/underscore-min.js') }}"></script>
