@@ -42,34 +42,34 @@ def convert_keywords_to_popovers(text,occurence=4):
         word_re = re.compile(r'\b%s\b' % word.word, re.IGNORECASE)
         word_counts[word.word]= 0
 
-        i = 0;
+        cur = 0;
         this_output = ""
-        for m in word_re.finditer(output):
+        for match in word_re.finditer(output):
             # iterate over each found word
             word_counts[word.word] += 1
             # here we replace every 1st and [occurence] occurence of the word
             if word_counts[word.word] % occurence == 0 or word_counts[word.word] == 1:
                 # wrap word in appropriate html
-                this_output += "".join([output[i:m.start()],
+                this_output += "".join([output[cur:match.start()],
                        "<a href=\"%s#%s\" data-title=\"Federal Budget Glossary\" data-load=\"%s\" rel=\"popover\" \
                        class=\"fb101keyword\">"  %
                        (urlresolvers.reverse('keyword-list'),
                         word.slug,
                         urlresolvers.reverse('keyword-html', args=[word.slug])),
 
-                       output[m.start():m.end()],
+                       output[match.start():match.end()],
                        "</a>"])
             else:
                 # word was not replaced but we still need to add this chunk of text
                 # to the output
-                this_output += "".join([output[i:m.end()]])
+                this_output += "".join([output[cur:match.end()]])
 
             # set our pointer to the end of this word instance
-            i = m.end()
+            cur = match.end()
 
         # if we replaced anything at all, we need to include the rest of the text
         if this_output != '':
-            this_output += output[m.end():]
+            this_output += output[match.end():]
             output = this_output
 
         # cleanup
