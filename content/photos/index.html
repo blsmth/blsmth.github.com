@@ -1,0 +1,29 @@
+
+---
+extends: base.j2
+title: Photos - Brendan Smith - Full Stack Web Developer
+description: Brendan's Photos
+---
+
+
+
+{% block main %}
+<div id="gallery"></div>
+
+<script type="text/template" id="gallery-template">
+      <h1 id="title"><%= title %></h1>
+      <p id="description"><%= description %></p>
+      <div class="span6">
+        <ul id="thumbs"></ul>
+      </div>
+      <div class="span" id="fullsize"></div>
+
+</script>
+
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ media_url('js/libs/underscore-min.js') }}"></script>
+<script src="{{ media_url('js/libs/backbone-min.js') }}"></script>
+<script src="{{ media_url('js/libs/backbone-photo.js') }}"></script>
+{% endblock %}
